@@ -19,7 +19,7 @@
         }
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body { background: var(--bg); color: var(--text); font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; line-height: 1.6; min-height: 100vh; }
-        .container { max-width: 1200px; margin: 0 auto; padding: 40px 24px; }
+        .container { max-width: 1400px; margin: 0 auto; padding: 40px 24px; }
 
         .header { text-align: center; margin-bottom: 32px; }
         .header h1 { font-size: 26px; font-weight: 700; color: #fff; margin-bottom: 4px; }
@@ -102,8 +102,10 @@
         .age-fresh { color: var(--accent2); }
         .age-stale { color: var(--warn); }
 
-        /* Comment column */
-        .col-comment { max-width: 340px; font-size: 12px; color: var(--text); line-height: 1.5; }
+        /* Bull/Bear columns */
+        .col-bull, .col-bear { max-width: 280px; font-size: 12px; line-height: 1.5; }
+        .col-bull { color: var(--accent2); }
+        .col-bear { color: var(--danger); }
 
 
         .footer { text-align: center; margin-top: 32px; font-size: 12px; color: var(--muted); }
@@ -136,7 +138,7 @@
                 min-width: 80px;
                 font-weight: 600;
             }
-            .col-comment { max-width: none; }
+            .col-bull, .col-bear { max-width: none; }
         }
     </style>
 </head>
@@ -154,7 +156,8 @@
 <th>Model Type</th>
                     <th>Overview</th>
                     <th>Updated</th>
-                    <th>Comment</th>
+                    <th>Bull</th>
+                    <th>Bear</th>
                 </tr>
             </thead>
             <tbody>
@@ -171,9 +174,8 @@
                         <span class="date-age age-fresh">today</span>
                     </td>
 
-                    <td class="col-comment" data-label="Comment">
-                        BOJ held at 1.00% with hawkish inflation warning; FY3/26 record net income &yen;1.58tn (+34%); Q1 results due today.
-                    </td>
+                    <td class="col-bull" data-label="Bull">Record NI &yen;1.58tn (+34%); BOJ rate hikes boost NII; shareholder returns accelerating</td>
+                    <td class="col-bear" data-label="Bear">Yen strength risk; BOJ overtightening could slow loan growth; valuation near cycle highs</td>
                 </tr>
 
                 <!-- Ceres Power -->
@@ -189,9 +191,8 @@
                         <span class="date-age age-fresh">today</span>
                     </td>
 
-                    <td class="col-comment" data-label="Comment">
-                        Share price collapsed to ~307p (-46% below placing); Bloom surged 32% on $1.7B Nebius deal. Earnings 24 Sep.
-                    </td>
+                    <td class="col-bull" data-label="Bull">SOFC tech leadership; Bosch &amp; Shell partnerships; &pound;197m net cash runway</td>
+                    <td class="col-bear" data-label="Bear">Share price -46% below placing; Bloom $1.7B Nebius deal competitive threat; no revenue inflection yet</td>
                 </tr>
 
                 <!-- PANR -->
@@ -207,9 +208,8 @@
                         <span class="date-age age-fresh">2 days ago</span>
                     </td>
 
-                    <td class="col-comment" data-label="Comment">
-                        US listing deadline (31 Jul) expected to extend. Farm-in talks with &ldquo;multiple organisations&rdquo; ongoing. Cash to end of 2026 only.
-                    </td>
+                    <td class="col-bull" data-label="Bull">Multiple farm-in talks ongoing; 1.8bn boe contingent resource; Alaska North Slope infrastructure</td>
+                    <td class="col-bear" data-label="Bear">Cash runway to end-2026 only; no farm-in signed; US listing deadline uncertainty</td>
                 </tr>
 
                 <!-- Standard Chartered -->
@@ -225,9 +225,8 @@
                         <span class="date-age age-fresh">today</span>
                     </td>
 
-                    <td class="col-comment" data-label="Comment">
-                        Record H1 PBT $4.8bn (+9%). $1bn buyback launched via Goldman. Wealth +38%. RoTE 17.6%. ~6% total cash return yield.
-                    </td>
+                    <td class="col-bull" data-label="Bull">Record H1 PBT $4.8bn; $1bn buyback; Wealth +38%; RoTE 17.6%; ~6% total cash return</td>
+                    <td class="col-bear" data-label="Bear">China/HK geopolitical exposure; $234m ME credit overlay; CIR still above HSBC peers</td>
                 </tr>
 
                 <!-- Gamma Communications -->
@@ -243,9 +242,8 @@
                         <span class="date-age age-fresh">today</span>
                     </td>
 
-                    <td class="col-comment" data-label="Comment">
-                        PUSU deadline 5 Aug (5 days). Man Group filed Form 8.3. Shares rallied +14% in 2 weeks. ~2.85M buyback shares. Epiris sole bidder, Goldman advising.
-                    </td>
+                    <td class="col-bull" data-label="Bull">Epiris bid in play; Goldman advising; shares +14% in 2 weeks; recurring revenue base</td>
+                    <td class="col-bear" data-label="Bear">PUSU deadline 5 Aug; sole bidder risk; could lapse with no offer</td>
                 </tr>
 
                 <!-- Mobico -->
@@ -261,9 +259,8 @@
                         <span class="date-age age-fresh">today</span>
                     </td>
 
-                    <td class="col-comment" data-label="Comment">
-                        Guidance raised to &pound;215-230m adj. OP; Cosmen at ~26% approaching 30% mandatory bid; insiders sold on results day.
-                    </td>
+                    <td class="col-bull" data-label="Bull">Guidance raised to &pound;215-230m; Cosmen at ~26% nearing mandatory bid trigger; restructuring traction</td>
+                    <td class="col-bear" data-label="Bear">Insiders sold on results day; high leverage; bus market structurally challenged</td>
                 </tr>
 
                 <!-- Saga -->
@@ -279,9 +276,8 @@
                         <span class="date-age age-fresh">today</span>
                     </td>
 
-                    <td class="col-comment" data-label="Comment">
-                        PBT &pound;44.2m (+19%). Cruise load 93%, per diem &pound;394. Leverage 3.2x deleveraging. Berenberg target 1,025p vs ~650p.
-                    </td>
+                    <td class="col-bull" data-label="Bull">PBT +19%; cruise load 93%; deleveraging from 3.2x; Berenberg target 1,025p vs ~650p</td>
+                    <td class="col-bear" data-label="Bear">High leverage; ageing demographic risk; insurance margin pressure; small cap illiquidity</td>
                 </tr>
 
                 <!-- WPP -->
@@ -297,9 +293,8 @@
                         <span class="date-age age-fresh">today</span>
                     </td>
 
-                    <td class="col-comment" data-label="Comment">
-                        Revenue -6.7% LFL. Forward P/E ~4.5x, FCF yield &gt;10%. Div 15.0p (5.3% yield, cut 62%). H1 results 6 Aug. &pound;500m cost savings target.
-                    </td>
+                    <td class="col-bull" data-label="Bull">Forward P/E ~4.5x; FCF yield &gt;10%; &pound;500m cost savings; AI/WPP Open platform pivot</td>
+                    <td class="col-bear" data-label="Bear">Revenue -6.7% LFL; dividend cut 62%; AI disruption to agency model; client spend shifting</td>
                 </tr>
             </tbody>
         </table>
