@@ -108,37 +108,6 @@
         /* Comment column */
         .col-comment { max-width: 340px; font-size: 12px; color: var(--text); line-height: 1.5; }
 
-        /* Buttons */
-        .btn {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            width: 110px;
-            height: 34px;
-            border-radius: 7px;
-            font-size: 12px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.2s;
-            text-decoration: none;
-            border: 1px solid;
-            white-space: nowrap;
-        }
-        .btn-update {
-            background: rgba(34,197,94,0.08);
-            border-color: rgba(34,197,94,0.25);
-            color: var(--accent2);
-        }
-        .btn-update:hover {
-            background: rgba(34,197,94,0.18);
-            border-color: var(--accent2);
-        }
-        .btn-update.clicked {
-            background: rgba(34,197,94,0.15);
-            border-color: var(--accent2);
-            cursor: default;
-            opacity: 0.7;
-        }
 
         .footer { text-align: center; margin-top: 32px; font-size: 12px; color: var(--muted); }
 
@@ -171,7 +140,6 @@
                 font-weight: 600;
             }
             .col-comment { max-width: none; }
-            .btn { width: 100%; }
         }
     </style>
 </head>
@@ -189,7 +157,6 @@
                     <th>Type</th>
                     <th>Overview</th>
                     <th>Updated</th>
-                    <th>Update</th>
                     <th>Comment</th>
                 </tr>
             </thead>
@@ -206,9 +173,7 @@
                         <span class="date-value">31 Jul 2026</span>
                         <span class="date-age age-fresh">today</span>
                     </td>
-                    <td data-label="Update">
-                        <button class="btn btn-update" onclick="requestUpdate(this, 'SMFG')">Run Update</button>
-                    </td>
+
                     <td class="col-comment" data-label="Comment">
                         BOJ held at 1.00% with hawkish inflation warning; FY3/26 record net income &yen;1.58tn (+34%); Q1 results due today.
                     </td>
@@ -226,9 +191,7 @@
                         <span class="date-value">31 Jul 2026</span>
                         <span class="date-age age-fresh">today</span>
                     </td>
-                    <td data-label="Update">
-                        <button class="btn btn-update" onclick="requestUpdate(this, 'Ceres Power')">Run Update</button>
-                    </td>
+
                     <td class="col-comment" data-label="Comment">
                         Share price collapsed to ~307p (-46% below placing); Bloom surged 32% on $1.7B Nebius deal. Earnings 24 Sep.
                     </td>
@@ -246,9 +209,7 @@
                         <span class="date-value">29 Jul 2026</span>
                         <span class="date-age age-fresh">2 days ago</span>
                     </td>
-                    <td data-label="Update">
-                        <button class="btn btn-update" onclick="requestUpdate(this, 'PANR')">Run Update</button>
-                    </td>
+
                     <td class="col-comment" data-label="Comment">
                         US listing deadline (31 Jul) expected to extend. Farm-in talks with &ldquo;multiple organisations&rdquo; ongoing. Cash to end of 2026 only.
                     </td>
@@ -266,9 +227,7 @@
                         <span class="date-value">31 Jul 2026</span>
                         <span class="date-age age-fresh">today</span>
                     </td>
-                    <td data-label="Update">
-                        <button class="btn btn-update" onclick="requestUpdate(this, 'STAN')">Run Update</button>
-                    </td>
+
                     <td class="col-comment" data-label="Comment">
                         Record H1 PBT $4.8bn (+9%). $1bn buyback launched via Goldman. Wealth +38%. RoTE 17.6%. ~6% total cash return yield.
                     </td>
@@ -286,9 +245,7 @@
                         <span class="date-value">31 Jul 2026</span>
                         <span class="date-age age-fresh">today</span>
                     </td>
-                    <td data-label="Update">
-                        <button class="btn btn-update" onclick="requestUpdate(this, 'Gamma')">Run Update</button>
-                    </td>
+
                     <td class="col-comment" data-label="Comment">
                         PUSU deadline 5 Aug (5 days). Man Group filed Form 8.3. Shares rallied +14% in 2 weeks. ~2.85M buyback shares. Epiris sole bidder, Goldman advising.
                     </td>
@@ -306,9 +263,7 @@
                         <span class="date-value">31 Jul 2026</span>
                         <span class="date-age age-fresh">today</span>
                     </td>
-                    <td data-label="Update">
-                        <button class="btn btn-update" onclick="requestUpdate(this, 'Mobico')">Run Update</button>
-                    </td>
+
                     <td class="col-comment" data-label="Comment">
                         Guidance raised to &pound;215-230m adj. OP; Cosmen at ~26% approaching 30% mandatory bid; insiders sold on results day.
                     </td>
@@ -326,9 +281,7 @@
                         <span class="date-value">31 Jul 2026</span>
                         <span class="date-age age-fresh">today</span>
                     </td>
-                    <td data-label="Update">
-                        <button class="btn btn-update" onclick="requestUpdate(this, 'Saga')">Run Update</button>
-                    </td>
+
                     <td class="col-comment" data-label="Comment">
                         PBT &pound;44.2m (+19%). Cruise load 93%, per diem &pound;394. Leverage 3.2x deleveraging. Berenberg target 1,025p vs ~650p.
                     </td>
@@ -346,9 +299,7 @@
                         <span class="date-value">31 Jul 2026</span>
                         <span class="date-age age-fresh">today</span>
                     </td>
-                    <td data-label="Update">
-                        <button class="btn btn-update" onclick="requestUpdate(this, 'WPP')">Run Update</button>
-                    </td>
+
                     <td class="col-comment" data-label="Comment">
                         Revenue -6.7% LFL. Forward P/E ~4.5x, FCF yield &gt;10%. Div 15.0p (5.3% yield, cut 62%). H1 results 6 Aug. &pound;500m cost savings target.
                     </td>
@@ -361,13 +312,5 @@
         </div>
     </div>
 
-    <script>
-        function requestUpdate(btn, name) {
-            btn.textContent = 'Queued ✓';
-            btn.classList.add('clicked');
-            btn.disabled = true;
-            btn.title = 'Ask Claude to update the ' + name + ' monitor with latest data';
-        }
-    </script>
 </body>
 </html>
