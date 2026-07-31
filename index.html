@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Research Monitor Dashboard</title>
+    <style>
+        :root {
+            --bg: #0f1117;
+            --card: #1a1d27;
+            --border: #2a2d3a;
+            --accent: #4f8cff;
+            --accent2: #22c55e;
+            --warn: #f59e0b;
+            --danger: #ef4444;
+            --text: #e2e4ea;
+            --muted: #8b8fa3;
+            --hover: #252836;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { background: var(--bg); color: var(--text); font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; line-height: 1.6; min-height: 100vh; }
+        .container { max-width: 1200px; margin: 0 auto; padding: 40px 24px; }
+
+        .header { text-align: center; margin-bottom: 32px; }
+        .header h1 { font-size: 26px; font-weight: 700; color: #fff; margin-bottom: 4px; }
+        .header-sub { font-size: 13px; color: var(--muted); }
+
+        /* Table grid */
+        .grid-table { width: 100%; border-collapse: separate; border-spacing: 0; background: var(--card); border: 1px solid var(--border); border-radius: 12px; overflow: hidden; }
+
+        .grid-table thead th {
+            background: var(--bg);
+            font-size: 10px;
+            text-transform: uppercase;
+            letter-spacing: 0.8px;
+            color: var(--muted);
+            padding: 12px 16px;
+            text-align: left;
+            font-weight: 600;
+            border-bottom: 1px solid var(--border);
+            white-space: nowrap;
+        }
+
+        .grid-table tbody tr { transition: background 0.15s; }
+        .grid-table tbody tr:hover { background: var(--hover); }
+        .grid-table tbody td {
+            padding: 16px;
+            border-bottom: 1px solid var(--border);
+            vertical-align: middle;
+            font-size: 13px;
+        }
+        .grid-table tbody tr:last-child td { border-bottom: none; }
+
+        /* Name column */
+        .col-name { min-width: 200px; cursor: pointer; }
+        .col-name:hover .ticker { color: var(--accent); }
+        .ticker { font-size: 16px; font-weight: 800; color: #fff; display: block; margin-bottom: 2px; transition: color 0.15s; }
+        .company-name { font-size: 12px; color: var(--muted); }
+
+        /* Overview badge */
+        .verdict {
+            display: inline-block;
+            font-size: 11px;
+            font-weight: 700;
+            padding: 4px 12px;
+            border-radius: 6px;
+            letter-spacing: 0.4px;
+            text-transform: uppercase;
+            white-space: nowrap;
+        }
+        .verdict-hold { background: rgba(245,158,11,0.15); color: var(--warn); }
+        .verdict-speculative { background: rgba(245,158,11,0.15); color: var(--warn); }
+        .verdict-watching { background: rgba(79,140,255,0.15); color: var(--accent); }
+        .verdict-takeover { background: rgba(239,68,68,0.15); color: var(--danger); }
+
+        /* Date column */
+        .date-cell { white-space: nowrap; }
+        .date-value { font-weight: 600; color: var(--text); }
+        .date-age { font-size: 10px; color: var(--muted); display: block; margin-top: 2px; }
+        .age-fresh { color: var(--accent2); }
+        .age-stale { color: var(--warn); }
+
+        /* Comment column */
+        .col-comment { max-width: 340px; font-size: 12px; color: var(--text); line-height: 1.5; }
+
+        /* Buttons */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 120px;
+            height: 34px;
+            border-radius: 7px;
+            font-size: 12px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+            text-decoration: none;
+            border: 1px solid;
+            white-space: nowrap;
+        }
+        .btn-update {
+            background: rgba(34,197,94,0.08);
+            border-color: rgba(34,197,94,0.25);
+            color: var(--accent2);
+        }
+        .btn-update:hover {
+            background: rgba(34,197,94,0.18);
+            border-color: var(--accent2);
+        }
+        .btn-update.clicked {
+            background: rgba(34,197,94,0.15);
+            border-color: var(--accent2);
+            cursor: default;
+            opacity: 0.7;
+        }
+
+        .footer { text-align: center; margin-top: 32px; font-size: 12px; color: var(--muted); }
+
+        @media (max-width: 900px) {
+            .grid-table, .grid-table thead, .grid-table tbody, .grid-table th, .grid-table td, .grid-table tr {
+                display: block;
+            }
+            .grid-table thead { display: none; }
+            .grid-table tbody tr {
+                background: var(--card);
+                border: 1px solid var(--border);
+                border-radius: 10px;
+                margin-bottom: 12px;
+                padding: 16px;
+            }
+            .grid-table tbody td {
+                border-bottom: none;
+                padding: 6px 0;
+                display: flex;
+                align-items: center;
+                gap: 8px;
+            }
+            .grid-table tbody td::before {
+                content: attr(data-label);
+                font-size: 10px;
+                text-transform: uppercase;
+                letter-spacing: 0.5px;
+                color: var(--muted);
+                min-width: 80px;
+                font-weight: 600;
+            }
+            .col-comment { max-width: none; }
+            .btn { width: 100%; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Research Monitor Dashboard</h1>
+            <div class="header-sub">Active equity monitors</div>
+        </div>
+
+        <table class="grid-table">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Overview</th>
+                    <th>Updated</th>
+                    <th>Update</th>
+                    <th>Comment</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- SMFG -->
+                <tr>
+                    <td class="col-name" data-label="Name" onclick="window.open('https://kinyungyu.github.io/smfg-monitor/','_blank')">
+                        <span class="ticker">8316.T</span>
+                        <span class="company-name">Sumitomo Mitsui Financial Group</span>
+                    </td>
+                    <td data-label="Overview"><span class="verdict verdict-hold">HOLD</span></td>
+                    <td class="date-cell" data-label="Updated">
+                        <span class="date-value">31 Jul 2026</span>
+                        <span class="date-age age-fresh">today</span>
+                    </td>
+                    <td data-label="Update">
+                        <button class="btn btn-update" onclick="requestUpdate(this, 'SMFG')">Run Update</button>
+                    </td>
+                    <td class="col-comment" data-label="Comment">
+                        BOJ held at 1.00% with hawkish inflation warning; FY3/26 record net income &yen;1.58tn (+34%); Q1 results due today.
+                    </td>
+                </tr>
+
+                <!-- Ceres Power -->
+                <tr>
+                    <td class="col-name" data-label="Name" onclick="window.open('https://kinyungyu.github.io/ceres-power-bd-monitor/','_blank')">
+                        <span class="ticker">CWR.L</span>
+                        <span class="company-name">Ceres Power Holdings</span>
+                    </td>
+                    <td data-label="Overview"><span class="verdict verdict-hold">HOLD</span></td>
+                    <td class="date-cell" data-label="Updated">
+                        <span class="date-value">31 Jul 2026</span>
+                        <span class="date-age age-fresh">today</span>
+                    </td>
+                    <td data-label="Update">
+                        <button class="btn btn-update" onclick="requestUpdate(this, 'Ceres Power')">Run Update</button>
+                    </td>
+                    <td class="col-comment" data-label="Comment">
+                        Share price collapsed to ~307p (-46% below placing); Bloom surged 32% on $1.7B Nebius deal. Earnings 24 Sep.
+                    </td>
+                </tr>
+
+                <!-- PANR -->
+                <tr>
+                    <td class="col-name" data-label="Name" onclick="window.open('https://kinyungyu.github.io/panr-farm-in-monitor/','_blank')">
+                        <span class="ticker">PANR.L</span>
+                        <span class="company-name">Pantheon Resources</span>
+                    </td>
+                    <td data-label="Overview"><span class="verdict verdict-watching">WATCHING</span></td>
+                    <td class="date-cell" data-label="Updated">
+                        <span class="date-value">29 Jul 2026</span>
+                        <span class="date-age age-fresh">2 days ago</span>
+                    </td>
+                    <td data-label="Update">
+                        <button class="btn btn-update" onclick="requestUpdate(this, 'PANR')">Run Update</button>
+                    </td>
+                    <td class="col-comment" data-label="Comment">
+                        US listing deadline (31 Jul) expected to extend. Farm-in talks with &ldquo;multiple organisations&rdquo; ongoing. Cash to end of 2026 only.
+                    </td>
+                </tr>
+
+                <!-- Gamma Communications -->
+                <tr>
+                    <td class="col-name" data-label="Name" onclick="window.open('https://kinyungyu.github.io/gama-takeover-monitor/','_blank')">
+                        <span class="ticker">GAMA.L</span>
+                        <span class="company-name">Gamma Communications</span>
+                    </td>
+                    <td data-label="Overview"><span class="verdict verdict-takeover">UNDER OFFER</span></td>
+                    <td class="date-cell" data-label="Updated">
+                        <span class="date-value">31 Jul 2026</span>
+                        <span class="date-age age-fresh">today</span>
+                    </td>
+                    <td data-label="Update">
+                        <button class="btn btn-update" onclick="requestUpdate(this, 'Gamma')">Run Update</button>
+                    </td>
+                    <td class="col-comment" data-label="Comment">
+                        PUSU deadline 5 Aug (5 days). Man Group filed Form 8.3. Shares rallied +14% in 2 weeks. ~2.85M buyback shares. Epiris sole bidder, Goldman advising.
+                    </td>
+                </tr>
+
+                <!-- Mobico -->
+                <tr>
+                    <td class="col-name" data-label="Name" onclick="window.open('https://kinyungyu.github.io/mobico-monitor/','_blank')">
+                        <span class="ticker">MCG.L</span>
+                        <span class="company-name">Mobico Group</span>
+                    </td>
+                    <td data-label="Overview"><span class="verdict verdict-speculative">SPECULATIVE</span></td>
+                    <td class="date-cell" data-label="Updated">
+                        <span class="date-value">31 Jul 2026</span>
+                        <span class="date-age age-fresh">today</span>
+                    </td>
+                    <td data-label="Update">
+                        <button class="btn btn-update" onclick="requestUpdate(this, 'Mobico')">Run Update</button>
+                    </td>
+                    <td class="col-comment" data-label="Comment">
+                        Guidance raised to &pound;215-230m adj. OP; Cosmen at ~26% approaching 30% mandatory bid; insiders sold on results day.
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div class="footer">
+            Research Monitor Dashboard &mdash; Not financial advice. Data from public sources.
+        </div>
+    </div>
+
+    <script>
+        function requestUpdate(btn, name) {
+            btn.textContent = 'Queued ✓';
+            btn.classList.add('clicked');
+            btn.disabled = true;
+            btn.title = 'Ask Claude to update the ' + name + ' monitor with latest data';
+        }
+    </script>
+</body>
+</html>
