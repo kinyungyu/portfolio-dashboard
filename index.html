@@ -104,6 +104,15 @@
 
         /* Bull/Bear columns */
         .col-bull, .col-bear { max-width: 280px; font-size: 12px; color: var(--text); line-height: 1.5; }
+        .bb { display: flex; align-items: center; gap: 8px; }
+        .bb-text { flex: 1; }
+        .score { display: flex; align-items: center; justify-content: center; min-width: 22px; width: 22px; height: 22px; border-radius: 50%; font-size: 11px; font-weight: 700; flex-shrink: 0; }
+        .score-5 { background: rgba(34,197,94,0.15); color: var(--accent2); border: 1px solid rgba(34,197,94,0.30); }
+        .score-4 { background: rgba(74,222,128,0.15); color: #4ade80; border: 1px solid rgba(74,222,128,0.30); }
+        .score-3 { background: rgba(245,158,11,0.15); color: var(--warn); border: 1px solid rgba(245,158,11,0.30); }
+        .score-2 { background: rgba(251,146,60,0.15); color: #fb923c; border: 1px solid rgba(251,146,60,0.30); }
+        .score-1 { background: rgba(239,68,68,0.15); color: var(--danger); border: 1px solid rgba(239,68,68,0.30); }
+        .footnote { text-align: center; margin-top: 16px; font-size: 11px; color: var(--muted); line-height: 1.6; }
 
 
         .footer { text-align: center; margin-top: 32px; font-size: 12px; color: var(--muted); }
@@ -172,8 +181,8 @@
                         <span class="date-age age-fresh">today</span>
                     </td>
 
-                    <td class="col-bull" data-label="Bull">Record NI &yen;1.58tn (+34%); BOJ rate hikes boost NII; shareholder returns accelerating</td>
-                    <td class="col-bear" data-label="Bear">Yen strength risk; BOJ overtightening could slow loan growth; valuation near cycle highs</td>
+                    <td class="col-bull" data-label="Bull"><div class="bb"><span class="score score-4">4</span><span class="bb-text">Record NI &yen;1.58tn (+34%); BOJ rate hikes boost NII; shareholder returns accelerating</span></div></td>
+                    <td class="col-bear" data-label="Bear"><div class="bb"><span class="score score-2">2</span><span class="bb-text">Yen strength risk; BOJ overtightening could slow loan growth; valuation near cycle highs</span></div></td>
                 </tr>
 
                 <!-- Ceres Power -->
@@ -189,8 +198,8 @@
                         <span class="date-age age-fresh">today</span>
                     </td>
 
-                    <td class="col-bull" data-label="Bull">SOFC tech leadership; Bosch &amp; Shell partnerships; &pound;197m net cash runway</td>
-                    <td class="col-bear" data-label="Bear">Share price -46% below placing; Bloom $1.7B Nebius deal competitive threat; no revenue inflection yet</td>
+                    <td class="col-bull" data-label="Bull"><div class="bb"><span class="score score-3">3</span><span class="bb-text">SOFC tech leadership; Bosch &amp; Shell partnerships; &pound;197m net cash runway</span></div></td>
+                    <td class="col-bear" data-label="Bear"><div class="bb"><span class="score score-4">4</span><span class="bb-text">Share price -46% below placing; Bloom $1.7B Nebius deal competitive threat; no revenue inflection yet</span></div></td>
                 </tr>
 
                 <!-- PANR -->
@@ -206,8 +215,8 @@
                         <span class="date-age age-fresh">2 days ago</span>
                     </td>
 
-                    <td class="col-bull" data-label="Bull">Multiple farm-in talks ongoing; 1.8bn boe contingent resource; Alaska North Slope infrastructure</td>
-                    <td class="col-bear" data-label="Bear">Cash runway to end-2026 only; no farm-in signed; US listing deadline uncertainty</td>
+                    <td class="col-bull" data-label="Bull"><div class="bb"><span class="score score-3">3</span><span class="bb-text">Multiple farm-in talks ongoing; 1.8bn boe contingent resource; Alaska North Slope infrastructure</span></div></td>
+                    <td class="col-bear" data-label="Bear"><div class="bb"><span class="score score-4">4</span><span class="bb-text">Cash runway to end-2026 only; no farm-in signed; US listing deadline uncertainty</span></div></td>
                 </tr>
 
                 <!-- Standard Chartered -->
@@ -223,8 +232,8 @@
                         <span class="date-age age-fresh">today</span>
                     </td>
 
-                    <td class="col-bull" data-label="Bull">Record H1 PBT $4.8bn; $1bn buyback; Wealth +38%; RoTE 17.6%; ~6% total cash return</td>
-                    <td class="col-bear" data-label="Bear">China/HK geopolitical exposure; $234m ME credit overlay; CIR still above HSBC peers</td>
+                    <td class="col-bull" data-label="Bull"><div class="bb"><span class="score score-4">4</span><span class="bb-text">Record H1 PBT $4.8bn; $1bn buyback; Wealth +38%; RoTE 17.6%; ~6% total cash return</span></div></td>
+                    <td class="col-bear" data-label="Bear"><div class="bb"><span class="score score-2">2</span><span class="bb-text">China/HK geopolitical exposure; $234m ME credit overlay; CIR still above HSBC peers</span></div></td>
                 </tr>
 
                 <!-- Gamma Communications -->
@@ -240,8 +249,8 @@
                         <span class="date-age age-fresh">today</span>
                     </td>
 
-                    <td class="col-bull" data-label="Bull">Epiris bid in play; Goldman advising; shares +14% in 2 weeks; recurring revenue base</td>
-                    <td class="col-bear" data-label="Bear">PUSU deadline 5 Aug; sole bidder risk; could lapse with no offer</td>
+                    <td class="col-bull" data-label="Bull"><div class="bb"><span class="score score-4">4</span><span class="bb-text">Epiris bid in play; Goldman advising; shares +14% in 2 weeks; recurring revenue base</span></div></td>
+                    <td class="col-bear" data-label="Bear"><div class="bb"><span class="score score-2">2</span><span class="bb-text">PUSU deadline 5 Aug; sole bidder risk; could lapse with no offer</span></div></td>
                 </tr>
 
                 <!-- Mobico -->
@@ -257,8 +266,8 @@
                         <span class="date-age age-fresh">today</span>
                     </td>
 
-                    <td class="col-bull" data-label="Bull">Guidance raised to &pound;215-230m; Cosmen at ~26% nearing mandatory bid trigger; restructuring traction</td>
-                    <td class="col-bear" data-label="Bear">Insiders sold on results day; high leverage; bus market structurally challenged</td>
+                    <td class="col-bull" data-label="Bull"><div class="bb"><span class="score score-3">3</span><span class="bb-text">Guidance raised to &pound;215-230m; Cosmen at ~26% nearing mandatory bid trigger; restructuring traction</span></div></td>
+                    <td class="col-bear" data-label="Bear"><div class="bb"><span class="score score-3">3</span><span class="bb-text">Insiders sold on results day; high leverage; bus market structurally challenged</span></div></td>
                 </tr>
 
                 <!-- Saga -->
@@ -274,8 +283,8 @@
                         <span class="date-age age-fresh">today</span>
                     </td>
 
-                    <td class="col-bull" data-label="Bull">PBT +19%; cruise load 93%; deleveraging from 3.2x; Berenberg target 1,025p vs ~650p</td>
-                    <td class="col-bear" data-label="Bear">High leverage; ageing demographic risk; insurance margin pressure; small cap illiquidity</td>
+                    <td class="col-bull" data-label="Bull"><div class="bb"><span class="score score-4">4</span><span class="bb-text">PBT +19%; cruise load 93%; deleveraging from 3.2x; Berenberg target 1,025p vs ~650p</span></div></td>
+                    <td class="col-bear" data-label="Bear"><div class="bb"><span class="score score-3">3</span><span class="bb-text">High leverage; ageing demographic risk; insurance margin pressure; small cap illiquidity</span></div></td>
                 </tr>
 
                 <!-- WPP -->
@@ -291,11 +300,21 @@
                         <span class="date-age age-fresh">today</span>
                     </td>
 
-                    <td class="col-bull" data-label="Bull">Forward P/E ~4.5x; FCF yield &gt;10%; &pound;500m cost savings; AI/WPP Open platform pivot</td>
-                    <td class="col-bear" data-label="Bear">Revenue -6.7% LFL; dividend cut 62%; AI disruption to agency model; client spend shifting</td>
+                    <td class="col-bull" data-label="Bull"><div class="bb"><span class="score score-3">3</span><span class="bb-text">Forward P/E ~4.5x; FCF yield &gt;10%; &pound;500m cost savings; AI/WPP Open platform pivot</span></div></td>
+                    <td class="col-bear" data-label="Bear"><div class="bb"><span class="score score-4">4</span><span class="bb-text">Revenue -6.7% LFL; dividend cut 62%; AI disruption to agency model; client spend shifting</span></div></td>
                 </tr>
             </tbody>
         </table>
+
+        <div class="footnote">
+            <span style="margin-right: 4px;">Conviction score:</span>
+            <span class="score score-1" style="display:inline-flex; vertical-align:middle; margin-right:2px;">1</span><span style="margin-right:12px;">Lowest</span>
+            <span class="score score-2" style="display:inline-flex; vertical-align:middle; margin-right:2px;">2</span><span style="margin-right:12px;">Low</span>
+            <span class="score score-3" style="display:inline-flex; vertical-align:middle; margin-right:2px;">3</span><span style="margin-right:12px;">Medium</span>
+            <span class="score score-4" style="display:inline-flex; vertical-align:middle; margin-right:2px;">4</span><span style="margin-right:12px;">High</span>
+            <span class="score score-5" style="display:inline-flex; vertical-align:middle; margin-right:2px;">5</span><span>Highest</span>
+            <br>Bull = likelihood thesis plays out &middot; Bear = likelihood risk materialises
+        </div>
 
         <div class="footer">
             Research Monitor Dashboard &mdash; Not financial advice. Data from public sources.
